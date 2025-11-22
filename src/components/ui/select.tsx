@@ -30,6 +30,7 @@ function SelectTrigger({
 }: React.ComponentProps<typeof SelectPrimitive.Trigger> & {
   size?: "sm" | "default"
 }) {
+  
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"

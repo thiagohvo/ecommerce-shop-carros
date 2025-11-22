@@ -58,6 +58,7 @@ function App() {
                 <FavoriteLayout />
               </ProtectedRoute>
             } />
+            
 
             <Route path="*" element={
               <Navigate to={token ? "/products" : "/login"} replace />
