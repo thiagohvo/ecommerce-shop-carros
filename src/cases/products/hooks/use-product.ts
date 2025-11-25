@@ -18,6 +18,7 @@ export function useProduct(id: string) {
     });
 }    
 
+
 export function useCreateProduct() {
     const queryClient = useQueryClient();
 

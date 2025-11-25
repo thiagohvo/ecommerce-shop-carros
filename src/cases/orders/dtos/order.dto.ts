@@ -1,6 +1,10 @@
 import type { CustomerDTO } from "@/cases/customers/dtos/customer.dto";
 import type { OrderItemDTO } from "./order-item.dto";
 
+/**
+ * Configuração de status de pedidos com suas respectivas cores e labels.
+ * Utilizado para renderização de badges coloridos na interface.
+ */
 export const OrderStatus = [
   {
     value: "NEW",
@@ -46,13 +50,52 @@ export const OrderStatus = [
   },
 ];
 
+/**
+ * Data Transfer Object para representação de pedidos.
+ * Contém informações do cliente, itens, valores e status do pedido.
+ */
 export interface OrderDTO {
+    /**
+     * Identificador único do pedido (gerado pelo backend)
+     * Opcional ao criar novo pedido
+     */
     id?: string;
+    
+    /**
+     * Cliente que realizou o pedido
+     * Pode ser o objeto CustomerDTO completo ou apenas o ID (string)
+     */
     customer: CustomerDTO | string;
+    
+    /**
+     * Status atual do pedido
+     * Valores possíveis: NEW, SEPARATION, INVOICED, SHIPPED, DELIVERED, CANCELED
+     */
     status: string;
+    
+    /**
+     * Valor total do pedido (soma dos itens + frete)
+     */
     total: number;
+    
+    /**
+     * Valor do frete
+     */
     shipping: number;
+    
+    /**
+     * Lista de itens (produtos) do pedido
+     * Opcional ao criar o pedido, populado posteriormente
+     */
     items?: OrderItemDTO[];
+    
+    /**
+     * Data de criação do pedido (gerada pelo backend)
+     */
     createdAt?: Date;
+    
+    /**
+     * Data da última atualização do pedido (atualizada pelo backend)
+     */
     updatedAt?: Date;
 }

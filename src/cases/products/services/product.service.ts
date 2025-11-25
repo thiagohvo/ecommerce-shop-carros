@@ -19,6 +19,7 @@ export const ProductService = {
         const result = await api.post(_ENDPOINT, product);
         return result.data;
     },
+    
 
     async update(id: string, product: ProductDTO): Promise<ProductDTO> {
         const result = await api.put(`${_ENDPOINT}/${id}`, product);
