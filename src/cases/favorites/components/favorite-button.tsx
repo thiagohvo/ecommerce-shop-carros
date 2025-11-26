@@ -1,11 +1,18 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { useToggleFavorite } from "@/cases/favorites/hooks/use-favorite";
 import { useCurrentCustomer } from "@/cases/customers/hooks/use-customer";
-import { toast } from "react-toastify";
 
+/**
+ * Props do componente FavoriteButton
+ */
 interface FavoriteButtonProps {
+  /**
+   * Identificador único do produto a ser favoritado
+   */
   productId: string;
 }
+
 
 export function FavoriteButton({ productId }: FavoriteButtonProps) {
   const { customer } = useCurrentCustomer();
@@ -14,14 +21,14 @@ export function FavoriteButton({ productId }: FavoriteButtonProps) {
   
   const [isFavorite, setIsFavorite] = useState(false);
 
+  
   const handleClick = () => {
- 
+    
     setIsFavorite(true);
 
-   
+    
     toast.success("Produto favoritado com sucesso!");
 
-    
     if (customer?.id) {
       toggleFavorite.mutate(productId);
     }
@@ -30,7 +37,11 @@ export function FavoriteButton({ productId }: FavoriteButtonProps) {
   return (
     <button
       onClick={handleClick}
-      className={`text-white p-2 rounded ${isFavorite ? "bg-red-500" : "bg-gray-300"}`}
+      className={`text-white p-2 rounded ${
+        isFavorite 
+          ? "bg-red-500"    // Favoritado (vermelho)
+          : "bg-gray-300"   // Não favoritado (cinza)
+      }`}
     >
       ❤️
     </button>
