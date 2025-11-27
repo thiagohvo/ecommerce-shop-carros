@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
 import { useToggleFavorite } from "@/cases/favorites/hooks/use-favorite";
 import { useCurrentCustomer } from "@/cases/customers/hooks/use-customer";
 
@@ -18,17 +17,15 @@ export function FavoriteButton({ productId }: FavoriteButtonProps) {
   const { customer } = useCurrentCustomer();
   const toggleFavorite = useToggleFavorite();
 
-  
+ 
   const [isFavorite, setIsFavorite] = useState(false);
 
-  
+ 
   const handleClick = () => {
-    
+   
     setIsFavorite(true);
 
     
-    toast.success("Produto favoritado com sucesso!");
-
     if (customer?.id) {
       toggleFavorite.mutate(productId);
     }
